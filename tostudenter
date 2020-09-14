@@ -1,0 +1,67 @@
+import java.util.Scanner;
+
+public class test {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+
+        String winnerName = "", secondName = "", oneOrTwoStudents, name, oneOrMoreWinners;
+        String firstPlaceText = "Første plass: %s med score: %s";
+        String secondPlaceText = "Andre plass: %s med score: %s";
+        String inputText = "Oppgi studentens score og navn: ";
+
+        int studentCount, studentScore, topScore = 0, secondScore = 0;
+
+        System.out.print("Oppgi antall studenter: ");
+
+        studentCount = input.nextInt();
+
+        for (int i = 0; i < studentCount; i++) {
+            System.out.print(inputText);
+
+            studentScore = input.nextInt();
+            name = input.nextLine();
+
+            if (studentScore > topScore) {
+                secondScore = topScore;
+                topScore = studentScore;
+                secondName = winnerName;
+                winnerName = name;
+
+            } else if (studentScore == topScore) {
+                secondScore = topScore;
+                topScore = studentScore;
+                secondName = winnerName;
+                winnerName = winnerName.concat(", og" + name);
+
+            } else if (studentScore > secondScore) {
+                secondScore = studentScore;
+                secondName = name;
+
+            } else if (studentScore == secondScore) {
+                secondScore = studentScore;
+                secondName = secondName.concat(", og" + name);
+                System.out.println("hei");
+
+            }
+        }
+
+        oneOrTwoStudents = studentCount == 1 ? "Kun 1 student? " : "Topp to studenter: ";
+        oneOrMoreWinners = topScore == secondScore ? "Topp studenter: " : oneOrTwoStudents;
+
+        if (studentCount > 1) {
+            System.out.println(oneOrMoreWinners);
+            System.out.printf("\n" + firstPlaceText, winnerName, topScore + "\n");
+
+        } else {
+            System.out.println(oneOrMoreWinners);
+            System.out.print("\nTopp student er da" + winnerName + " med score: " + topScore);
+
+        }
+
+        if (studentCount > 1 && topScore != secondScore)
+            System.out.printf(secondPlaceText, secondName, secondScore);
+
+    }
+}
