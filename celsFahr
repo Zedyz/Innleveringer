@@ -1,0 +1,29 @@
+public class ConvertCelsiusFahrenheit {
+
+    public static void main(String[] args) {
+
+        String formatOutput = "%.1f %11.1f %11.1f %12.2f";
+        String headerText = "%s %12s %12s %9s\n";
+        double celsStart = 40.0, fahrstart = 120.0;
+
+        System.out.printf(headerText, "Celsius", "Fahrenheit", "Fahrenheit", "Celsius");
+
+        for (double i = 1; i <= 10; i++) {
+            System.out.printf(formatOutput, celsStart, celsiusToFahrenheit(celsStart), fahrstart, fahrenheitToCelsius(fahrstart));
+            celsStart--;
+            fahrstart = fahrstart - 10;
+            System.out.println();
+
+        }
+    }
+
+    public static double celsiusToFahrenheit(double celsius) {
+
+        return (9.0 / 5) * celsius + 32;
+    }
+
+    public static double fahrenheitToCelsius(double fahrenheit) {
+
+        return (5.0 / 9) * (fahrenheit - 32);
+    }
+}
