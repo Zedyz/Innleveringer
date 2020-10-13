@@ -1,0 +1,44 @@
+
+public class MergeTwoSortedArrays {
+
+    public static void main(String[] args) {
+
+        int[] list1 = new int[]{2, 5, 3, 4, 5, 6, 2, 8, 9, 3};
+        int[] list2 = new int[]{9, 3, 5, 2, 8, 5, 1, 2, 7, 3};
+
+        for (int j : merge(list1, list2)) {
+            System.out.print(j);
+
+        }
+    }
+
+    public static int[] merge(int[] list1, int[] list2) {
+        int[] resultList = new int[list1.length + list2.length];
+
+        System.arraycopy(list1, 0, resultList, 0, list1.length);
+        System.arraycopy(list2, 0, resultList, list1.length, list2.length);
+
+        selectionSort(resultList);
+
+        return resultList;
+    }
+
+    public static void selectionSort(int[] list) {
+        for (int i = 0; i < list.length - 1; i++) {
+            int currentMin = list[i];
+            int currentMinIndex = i;
+
+            for (int j = i + 1; j < list.length; j++) {
+                if (currentMin > list[j]) {
+                    currentMin = list[j];
+                    currentMinIndex = j;
+                }
+            }
+
+            if (currentMinIndex != i) {
+                list[currentMinIndex] = list[i];
+                list[i] = currentMin;
+            }
+        }
+    }
+}
